@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      go_router_aggregator|aggregate_app_routes:
+        generate_for:
+          - "lib/**/*.g.dart"
+
+builders:
+  aggregate_app_routes:
+    import: "package:go_router_aggregator/go_router_aggregator.dart"
+    builder_factories: [ "aggregateAppRoutes" ]
+    build_extensions:
+      "$lib$": [ "routes.g.dart" ]
+    auto_apply: root_package
+    build_to: source
