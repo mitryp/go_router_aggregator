@@ -1,5 +1,7 @@
 name: go_router_aggregator
-description: A build_runner plugin that scans all *.g.dart files for $appRoutes and emits a merged aggregated_app_routes.g.dart.
+description: >
+  Aggregates GoRouter's generated type-safe routes into one importable file,
+  separating your route declarations from the router setup.
 version: 1.0.0
 repository: https://github.com/mitryp/go_router_aggregator
 
