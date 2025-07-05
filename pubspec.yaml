@@ -2,6 +2,7 @@ name: go_router_aggregator
 description: A build_runner plugin that scans all *.g.dart files for $appRoutes and emits a merged aggregated_app_routes.g.dart.
 version: 0.1.0
 publish_to: none
+repository: https://github.com/mitryp/go_router_aggregator
 
 environment:
   sdk: ">=3.5.0 <4.0.0"
