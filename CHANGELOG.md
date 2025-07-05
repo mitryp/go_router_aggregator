@@ -1,4 +1,4 @@
-# 1.0.0
+# 1.0.1
 
 * Updated the package description at pub.dev.
 
