@@ -40,10 +40,9 @@ jobs:
       - name: Run tests
         run: dart test
 
-      # Skip pana for the test run
-      #- run: dart pub global activate pana
-      #- name: Run pana
-      #  run: pana --exit-code-threshold 150 .
+      - run: dart pub global activate pana
+      - name: Run pana
+        run: pana --exit-code-threshold 150 .
 
       - name: Dry run publish
         run: dart pub publish --dry-run
