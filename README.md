@@ -53,12 +53,12 @@ global_options:
 1. Define your routes using GoRouter code generation (e.g. `@TypedGoRoute`, `@TypedShellRoute`) in any files it's
    convenient for you (for example, together with your widgets).
 
-2. Run the build:
+2. Run the codegen:
    ```bash
    dart run build_runner build -d
    ```
 
-   Alternatively, start the file watcher:
+   Alternatively, start the file system watcher to rebuild automatically on every change:
    ```bash
    dart run build_runner watch -d
    ```
@@ -69,8 +69,10 @@ global_options:
 
    final router = GoRouter(
      initialLocation: const HomeRoute().location,
-     routes: $aggregatedRoutes, // generated RouteBase list
+     routes: $aggregatedRoutes, // generated routes list
    );
+
+A complete usage example can be found [on GitHub](https://github.com/mitryp/go_router_aggregator/tree/main/example).
 
 ---
 
@@ -91,8 +93,6 @@ List<RouteBase> get $aggregatedRoutes => [
   ..._settings_page0.$appRoutes,
 ];
 ```
-
-A complete usage example can be found at the [Example](https://pub.dev/packages/go_router_aggregator/example) section.
 
 ## Contributing
 
