@@ -1,9 +1,8 @@
-# go_router_aggregator
+# Define your type-safe routes where it makes sense
 
-A builder to leverage GoRouter’s type-safe routes by cleanly separating route declarations from your router
-configuration, aggregating all generated $appRoutes into a single importable file.
-This is a workaround for [flutter/flutter#122258](https://github.com/flutter/flutter/issues/122258) that automatically
-merges all your generated GoRouter `$appRoutes` getters into a single file.
+A builder to leverage GoRouter’s type-safe routes by splitting route declarations out from your router configuration and
+then aggregating **all** generated `$appRoutes` getters into a single `$aggregatedRoutes` collection. It also serves as a
+workaround for [flutter/flutter#122258](https://github.com/flutter/flutter/issues/122258).
 
 ---
 
@@ -85,3 +84,18 @@ List<RouteBase> get $aggregatedRoutes => [
 ];
 ```
 
+## Contributing
+
+Contributions are very welcome!
+If you find a bug or have a feature request, please open an issue. 
+If you’d like to contribute code, fork the repo and open a pull request.
+
+Before submitting a PR:
+* Make sure all existing tests pass
+   ```bash
+   dart run test
+   ```
+* Format your changes with `dart format .`
+* Add tests for any new behavior.
+
+Thank you for helping make `go_router_aggregator` even better!
