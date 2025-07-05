@@ -163,5 +163,63 @@ class BarRoute extends GoRouteData {
         },
       );
     });
+
+    test('handles duplicate filenames in different directories', () async {
+      final inputs = <String, String>{
+        'test|lib/foo/foo.g.dart': '''
+// GENERATED CODE - DO NOT MODIFY BY HAND
+List<RouteBase> get \$appRoutes => [
+  FooRoute(),
+];
+
+RouteBase get \$fooRoute => GoRouteData.\$route(
+  path: '/foo',
+  factory: _\$FooRoute._fromState,
+);
+''',
+        'test|lib/foo/foo.dart': '''
+import 'package:go_router/go_router.dart';
+class FooRoute extends GoRouteData {
+  const FooRoute();
+  @override String get location => '/foo';
+}
+''',
+        'test|lib/bar/foo.g.dart': '''
+// GENERATED CODE - DO NOT MODIFY BY HAND
+List<RouteBase> get \$appRoutes => [
+  FooRoute(),
+];
+
+RouteBase get \$fooRoute => GoRouteData.\$route(
+  path: '/foo',
+  factory: _\$FooRoute._fromState,
+);
+''',
+        'test|lib/bar/foo.dart': '''
+import 'package:go_router/go_router.dart';
+class FooRoute extends GoRouteData {
+  const FooRoute();
+  @override String get location => '/foo';
+}
+''',
+      };
+
+      await testBuilder(
+        aggregateAppRoutes(const BuilderOptions({})),
+        inputs,
+        outputs: {
+          'test|lib/routes.g.dart': decodedMatches(allOf(
+            // both imports should appear, with distinct prefixes
+            contains("import 'package:test/foo/foo.dart' as _foo0;"),
+            contains("import 'package:test/bar/foo.dart' as _foo1;"),
+            // and both spreads
+            contains('..._foo0.\$appRoutes'),
+            contains('..._foo1.\$appRoutes'),
+            // the aggregated getter must still be present
+            contains('List<RouteBase> get \$aggregatedRoutes => ['),
+          )),
+        },
+      );
+    });
   });
 }
