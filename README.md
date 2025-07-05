@@ -92,6 +92,8 @@ List<RouteBase> get $aggregatedRoutes => [
 ];
 ```
 
+A complete usage example can be found at the [Example](https://pub.dev/packages/go_router_aggregator/example) section.
+
 ## Contributing
 
 Contributions are very welcome!
