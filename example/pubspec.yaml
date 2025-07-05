@@ -9,12 +9,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  go_router: ^16.0.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.15
+  go_router_builder: ^3.0.1
+  build_verify: ^3.1.1
+  go_router_aggregator: ^1.0.0
 
 flutter:
   uses-material-design: true
+
+# This is for the example to compile with the local version of the plugin.
+# You do not need to include this in your project.
+dependency_overrides:
+  go_router_aggregator:
+    path: ../.

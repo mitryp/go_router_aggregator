@@ -1,0 +1,4 @@
+global_options:
+  go_router_aggregator|aggregate_app_routes:
+    options:
+      output: "navigation/app_routes.g.dart"
