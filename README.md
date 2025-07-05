@@ -1,3 +1,7 @@
+[![Dart Tests](https://github.com/mitryp/go_router_aggregator/actions/workflows/test.yml/badge.svg)](https://github.com/mitryp/go_router_aggregator/actions/workflows/test.yml?branch=main)
+[![pub package](https://img.shields.io/pub/v/go_router_aggregator.svg)](https://pub.dev/packages/go_router_aggregator)
+[![package publisher](https://img.shields.io/pub/publisher/go_router_aggregator.svg)](https://pub.dev/packages/go_router_aggregator/publisher)
+
 # Define your type-safe routes where it makes sense
 
 A builder to leverage [GoRouter’s type-safe routes](https://pub.dev/documentation/go_router/latest/topics/Type-safe%20routes-topic.html) by splitting route declarations out from your router configuration and
