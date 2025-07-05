@@ -1,3 +1,7 @@
 # 1.0.0
 
-* Initial package release
+* Updated the package description at pub.dev.
+
+# 1.0.0
+
+* Initial package release.
