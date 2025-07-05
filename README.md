@@ -1,6 +1,6 @@
 # Define your type-safe routes where it makes sense
 
-A builder to leverage GoRouter’s type-safe routes by splitting route declarations out from your router configuration and
+A builder to leverage [GoRouter’s type-safe routes](https://pub.dev/documentation/go_router/latest/topics/Type-safe%20routes-topic.html) by splitting route declarations out from your router configuration and
 then aggregating **all** generated `$appRoutes` getters into a single `$aggregatedRoutes` collection. It also serves as a
 workaround for [flutter/flutter#122258](https://github.com/flutter/flutter/issues/122258).
 
@@ -16,17 +16,27 @@ workaround for [flutter/flutter#122258](https://github.com/flutter/flutter/issue
 
 ## Installation
 
-Add the plugin and its dependencies to your project:
+If you don't already use `go_router` and `go_router_builder`, install them:
 
-```yaml
-flutter pub add dev:build_runner dev:go_router_aggregator
+```bash
+flutter pub add go_router dev:build_runner dev:go_router_builder dev:build_verify
 ```
+
+Next, add this plugin to your project:
+
+```bash
+flutter pub add dev:go_router_aggregator
+```
+
+This plugin uses `build_runner` to generate code.
 
 ---
 
 ## Configuration
 
-Use `global_options` in your project’s `build.yaml` (next to `pubspec.yaml`) to change the output location:
+By default, output will be written to `lib/routes.g.dart`.
+
+You can use `global_options` in your project’s `build.yaml` (next to `pubspec.yaml`) to change its location:
 
 ```yaml
 global_options:
@@ -35,8 +45,6 @@ global_options:
       # Path relative to lib/ where the file will be generated
       output: "navigation/app_routes.g.dart"
 ```
-
-By default, output will be written to `lib/routes.g.dart`.
 
 ---
 
