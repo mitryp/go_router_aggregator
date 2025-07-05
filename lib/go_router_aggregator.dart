@@ -81,7 +81,9 @@ import 'package:go_router/go_router.dart';\n
     final spreadsStr = spreads.toString();
     buffer
       ..writeln('\nList<RouteBase> get \$aggregatedRoutes => [')
-      ..writeln(spreadsStr.substring(0, spreadsStr.length - 1)) // remove the last newline
+      ..writeln(
+        spreadsStr.substring(0, spreadsStr.length - 1),
+      ) // remove the last newline
       ..writeln('];');
 
     // write the output to the configured path
