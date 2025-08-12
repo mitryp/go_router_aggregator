@@ -221,5 +221,38 @@ class FooRoute extends GoRouteData {
         },
       );
     });
+
+    test('does not generate entries for orphaned generated route files',
+        () async {
+      final inputs = <String, String>{
+        'test|lib/foo.g.dart': '''
+// GENERATED CODE - DO NOT MODIFY BY HAND
+List<RouteBase> get \$appRoutes => [
+  \$fooRoute,
+];
+
+RouteBase get \$fooRoute => GoRouteData.\$route(
+  path: '/foo',
+  factory: _\$FooRoute._fromState,
+);
+''',
+// a source file that was supposedly removed, so that only the generated file is left
+//         'test|lib/foo.dart': '''
+// import 'package:go_router/go_router.dart';
+//
+// class FooRoute extends GoRouteData {
+//   const FooRoute();
+//   @override
+//   String get location => '/foo';
+// }
+// ''',
+      };
+
+      await testBuilder(
+        aggregateAppRoutes(const BuilderOptions({})),
+        inputs,
+        outputs: {},
+      );
+    });
   });
 }
