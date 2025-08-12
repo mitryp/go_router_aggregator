@@ -2,7 +2,7 @@ name: go_router_aggregator
 description: >
   Aggregates GoRouter's generated type-safe routes into one importable file,
   separating your route declarations from the router setup.
-version: 1.0.1
+version: 1.0.2
 repository: https://github.com/mitryp/go_router_aggregator
 
 environment:
