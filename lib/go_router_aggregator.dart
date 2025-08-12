@@ -60,8 +60,18 @@ import 'package:go_router/go_router.dart';\n
 
       // write the input statement to the buffer directly
 
-      // turn lib/foo/bar.g.dart into foo/bar.dart
-      final sourceFilePath = id.path.substring(4, id.path.length - 7) + '.dart';
+      // turn the path to the .g. file into path to the source file
+      final fullSourceFilePath =
+          id.path.substring(0, id.path.length - 7) + '.dart';
+      // turn lib/foo/bar.dart into foo/bar.dart
+      final sourceFilePath = fullSourceFilePath.substring(4);
+
+      // skip the source file if it does not exist
+      final sourceFileId = AssetId(id.package, fullSourceFilePath);
+      if (!await buildStep.canRead(sourceFileId)) {
+        continue;
+      }
+
       buffer.writeln(
         "import 'package:${id.package}/$sourceFilePath' as $prefix;",
       );
