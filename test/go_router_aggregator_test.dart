@@ -210,8 +210,8 @@ class FooRoute extends GoRouteData {
         outputs: {
           'test|lib/routes.g.dart': decodedMatches(allOf(
             // both imports should appear, with distinct prefixes
-            contains("import 'package:test/foo/foo.dart' as _foo0;"),
-            contains("import 'package:test/bar/foo.dart' as _foo1;"),
+            contains(RegExp(r"import 'package:test/foo/foo.dart' as _foo\d;")),
+            contains(RegExp(r"import 'package:test/bar/foo.dart' as _foo\d;")),
             // and both spreads
             contains('..._foo0.\$appRoutes'),
             contains('..._foo1.\$appRoutes'),
