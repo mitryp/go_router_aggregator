@@ -11,8 +11,16 @@ List<RouteBase> get $appRoutes => [$shellPageRoute];
 RouteBase get $shellPageRoute => ShellRouteData.$route(
   factory: $ShellPageRouteExtension._fromState,
   routes: [
-    GoRouteData.$route(path: '/shell/1', factory: $ShellPage1Route._fromState),
-    GoRouteData.$route(path: '/shell/2', factory: $ShellPage2Route._fromState),
+    GoRouteData.$route(
+      path: '/shell/1',
+      hasOverriddenOnExit: false,
+      factory: $ShellPage1Route._fromState,
+    ),
+    GoRouteData.$route(
+      path: '/shell/2',
+      hasOverriddenOnExit: false,
+      factory: $ShellPage2Route._fromState,
+    ),
   ],
 );
 
