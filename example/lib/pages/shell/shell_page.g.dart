@@ -11,8 +11,8 @@ List<RouteBase> get $appRoutes => [$shellPageRoute];
 RouteBase get $shellPageRoute => ShellRouteData.$route(
   factory: $ShellPageRouteExtension._fromState,
   routes: [
-    GoRouteData.$route(path: '/shell/1', factory: _$ShellPage1Route._fromState),
-    GoRouteData.$route(path: '/shell/2', factory: _$ShellPage2Route._fromState),
+    GoRouteData.$route(path: '/shell/1', factory: $ShellPage1Route._fromState),
+    GoRouteData.$route(path: '/shell/2', factory: $ShellPage2Route._fromState),
   ],
 );
 
@@ -21,7 +21,7 @@ extension $ShellPageRouteExtension on ShellPageRoute {
       const ShellPageRoute();
 }
 
-mixin _$ShellPage1Route on GoRouteData {
+mixin $ShellPage1Route on GoRouteData {
   static ShellPage1Route _fromState(GoRouterState state) =>
       const ShellPage1Route();
 
@@ -42,7 +42,7 @@ mixin _$ShellPage1Route on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ShellPage2Route on GoRouteData {
+mixin $ShellPage2Route on GoRouteData {
   static ShellPage2Route _fromState(GoRouterState state) =>
       const ShellPage2Route();
 

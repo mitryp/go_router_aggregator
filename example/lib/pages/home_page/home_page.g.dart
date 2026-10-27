@@ -9,9 +9,9 @@ part of 'home_page.dart';
 List<RouteBase> get $appRoutes => [$homePageRoute];
 
 RouteBase get $homePageRoute =>
-    GoRouteData.$route(path: '/home', factory: _$HomePageRoute._fromState);
+    GoRouteData.$route(path: '/home', factory: $HomePageRoute._fromState);
 
-mixin _$HomePageRoute on GoRouteData {
+mixin $HomePageRoute on GoRouteData {
   static HomePageRoute _fromState(GoRouterState state) => const HomePageRoute();
 
   @override

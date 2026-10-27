@@ -46,7 +46,7 @@ class ShellPageBuilder extends StatelessWidget {
   }
 }
 
-class ShellPage1Route extends GoRouteData with _$ShellPage1Route {
+class ShellPage1Route extends GoRouteData with $ShellPage1Route {
   const ShellPage1Route();
 
   @override
@@ -62,7 +62,7 @@ class ShellPage1 extends StatelessWidget {
   }
 }
 
-class ShellPage2Route extends GoRouteData with _$ShellPage2Route {
+class ShellPage2Route extends GoRouteData with $ShellPage2Route {
   const ShellPage2Route();
 
   @override
