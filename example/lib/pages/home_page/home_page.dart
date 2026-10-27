@@ -5,7 +5,7 @@ import 'package:go_router_aggregator_example/pages/shell/shell_page.dart';
 part 'home_page.g.dart';
 
 @TypedGoRoute<HomePageRoute>(path: '/home')
-class HomePageRoute extends GoRouteData with _$HomePageRoute {
+class HomePageRoute extends GoRouteData with $HomePageRoute {
   const HomePageRoute();
 
   @override

@@ -2,10 +2,12 @@
 // ignore_for_file: type=lint
 import 'package:go_router/go_router.dart';
 
-import 'package:go_router_aggregator_example/pages/home_page/home_page.dart' as _home_page0;
-import 'package:go_router_aggregator_example/pages/shell/shell_page.dart' as _shell_page0;
+import 'package:go_router_aggregator_example/pages/home_page/home_page.dart'
+    as _pages_home_page_home_page;
+import 'package:go_router_aggregator_example/pages/shell/shell_page.dart'
+    as _pages_shell_shell_page;
 
 List<RouteBase> get $aggregatedRoutes => [
-  ..._home_page0.$appRoutes,
-  ..._shell_page0.$appRoutes,
+  ..._pages_home_page_home_page.$appRoutes,
+  ..._pages_shell_shell_page.$appRoutes,
 ];

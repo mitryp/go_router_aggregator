@@ -7,25 +7,91 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  analyze:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
+      - uses: actions/checkout@v7
       - uses: dart-lang/setup-dart@v1
 
       - name: Install dependencies
         run: dart pub get --no-example
 
       - name: Verify formatting
-        run: dart format --output=none --set-exit-if-changed lib/
+        run: dart format --output=none --set-exit-if-changed lib test
 
       - name: Analyze project source
-        run: dart analyze lib/
+        run: dart analyze lib test
+
+  test:
+    name: Test (Dart ${{ matrix.sdk }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # the minimum supported SDK and the latest stable one
+        sdk: [ "3.7.0", stable ]
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
+
+      - name: Install dependencies
+        run: dart pub get --no-example
 
       - name: Run tests
         run: dart test
+
+  # Only analyzes, as the minimum versions of the dev dependencies' own
+  # transitive dependencies are not guaranteed to work together.
+  analyze-min-deps:
+    name: Analyze with minimum dependency versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.7.0
+
+      - name: Install minimum dependency versions
+        run: dart pub downgrade --no-example
+
+      - name: Analyze project source
+        run: dart analyze lib
+
+  example:
+    name: Build example (${{ matrix.dependencies }} dependencies)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # `latest` also upgrades past the example's major version constraints,
+        # e.g. to the newest go_router and go_router_builder
+        dependencies: [ constrained, latest ]
+    defaults:
+      run:
+        working-directory: example
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Upgrade dependencies to the latest versions
+        if: matrix.dependencies == 'latest'
+        run: flutter pub upgrade --major-versions
+
+      - name: Run the code generation
+        run: dart run build_runner build -d
+
+      - name: Verify the aggregated routes are up to date
+        if: matrix.dependencies == 'constrained'
+        run: git diff --exit-code -- lib/navigation/app_routes.g.dart
+
+      - name: Analyze the example
+        run: flutter analyze
